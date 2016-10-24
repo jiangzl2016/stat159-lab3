@@ -1,0 +1,8 @@
+Stats 159 lab 8
+
+author: Zhongling Jiang 
+Date: Oct, 24, 2016
+
+In this lab, the code will create a shiny app based on a simple linear regression model build on Advertising dataset. By selecting dropdown menu, user could seescatterplot of the Sales variable against all other variables in the dataset.
+
+The Advertising.csv can be downloaded from http://www-bcf.usc.edu/~gareth/ISL/Advertising.csv. 
