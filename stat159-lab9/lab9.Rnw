@@ -1,0 +1,54 @@
+\documentclass[a4paper]{article}
+
+%% Language and font encodings
+\usepackage[english]{babel}
+\usepackage[utf8x]{inputenc}
+\usepackage[T1]{fontenc}
+
+%% Sets page size and margins
+\usepackage[a4paper,top=3cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+%% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorinlistoftodos]{todonotes}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Simple Linear Regression}
+\author{Zhongling Jiang}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+\maketitle
+
+\begin{abstract}
+
+In this report, we will look at the Advertising.csv dataset and reproduce the regression result covered in book session 3.1 Simple Linear Regression of the book An introduction to the Statistical Learning.
+
+\end{abstract}
+
+\section{Introduction}
+
+The goal of our analysis is to provide advice on improving sales of a particular product. More specifically, we are looking at the relationship between sales and advertising. If so, we want to quantify the relationship between them. 
+
+\section{Data}
+The Advertising.csv dataset contains Sales (in thousands of units), advertising budget (in thousands of dollars) for three different media: TV, Radio and Newspaper.
+
+\section{Methodology}
+We focus on one of the independent variables: **TV**. Assume the relationship between the response and independent variable forms a simple linear relationship. Then we have the model:
+
+\begin{equation}
+Sales = \beta_0 + \beta_1 * TV \label{eq: simplelm}
+\end{equation}
+
+\section{Result}
+We run the regression analysis in R by using lm() function. The resulting table shows regression coefficients, their standard error, and their p-value.
+
+<<my-label, eval=TRUE, dev='png'>>=
+set.seed(1213)  # for reproducibility
+x = cumsum(rnorm(100))
+mean(x)  # mean of x
+plot(x, type = 'l')  # Brownian motion
+@
+
+\end{document}
