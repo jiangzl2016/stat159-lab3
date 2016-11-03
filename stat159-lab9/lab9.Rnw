@@ -11,14 +11,13 @@
 %% Useful packages
 \usepackage{amsmath}
 \usepackage{graphicx}
-\usepackage[colorinlistoftodos]{todonotes}
+%\usepackage[colorinlistoftodos]{todonotes}
 \usepackage[colorlinks=true, allcolors=blue]{hyperref}
 
 \title{Simple Linear Regression}
 \author{Zhongling Jiang}
 
 \begin{document}
-\SweaveOpts{concordance=TRUE}
 \maketitle
 
 \begin{abstract}
@@ -44,11 +43,37 @@ Sales = \beta_0 + \beta_1 * TV \label{eq: simplelm}
 \section{Result}
 We run the regression analysis in R by using lm() function. The resulting table shows regression coefficients, their standard error, and their p-value.
 
-<<my-label, eval=TRUE, dev='png'>>=
-set.seed(1213)  # for reproducibility
-x = cumsum(rnorm(100))
-mean(x)  # mean of x
-plot(x, type = 'l')  # Brownian motion
+<<my-label, echo =FALSE, results = 'asis', eval=TRUE>>=
+library(knitr)
+load('regression.RData')
+library(xtable)
+summary_table <- xtable(s3)
+print(summary_table)
 @
+
+More information above least-square model is below:
+
+\begin{table}[t]
+
+  \begin{tabular}{l|r}
+  Quality & Value \\
+  RSS & \Sexpr{s3$r.squared} \\
+  R2 & \Sexpr{s3$sigma} \\
+  F-stat & \Sexpr{s3$f[1]}
+
+\end{tabular}
+
+\end{table}
+
+\section{conclusion}
+
+From the regression statistics, we find that p-value for slope is \Sexpr{s3$coefficients["tv","Pr(>|t|)"]} which shows there is a significant correlation between two variables. 
+
+% The R^2 value is \Sexpr{s3$r.squared}, which shows 
+% \Sexpr{s3$r.squared} of the variation in sales is explained by variation in tv commercials. F-vlaue is very large, 
+% also showing that correlation exists.
+
+However, this is not enough to conclude that the simple linear 
+model is a good fit to the data. We still have to look at residual plots to determine whether residuals follow a random pattern.
 
 \end{document}
